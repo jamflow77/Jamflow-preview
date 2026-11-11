@@ -480,7 +480,7 @@ function normalizeAudioName(value){
 }
 
 function findRecording(title,unused){
- const segments=title.split(/→|->/).map(normalizeAudioName).filter(Boolean);
+ const segments=title.split(/→|->/).map(value=>normalizeAudioName(value).join(" ")).filter(Boolean);
  const candidates=[];
 
  for(const idx of unused){
