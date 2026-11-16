@@ -6,193 +6,354 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#101713">
 <title>JamFlow — Your Live Music Journey</title>
+
 <style>
-:root{color-scheme:dark;--bg:#101713;--panel:#1b2720;--line:#35473a;--text:#f5f5e9;--muted:#b7c4b7;--gold:#e6c477;--green:#b9e5ad}
+:root{
+ color-scheme:dark;
+ --bg:#101713;
+ --panel:#1b2720;
+ --line:#35473a;
+ --text:#f5f5e9;
+ --muted:#b7c4b7;
+ --gold:#e6c477;
+ --green:#b9e5ad;
+}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}
-header{padding:28px 20px 24px;background:linear-gradient(145deg,#243c2b,#101713 78%);border-bottom:1px solid var(--line)}
+body{
+ margin:0;
+ background:var(--bg);
+ color:var(--text);
+ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+ line-height:1.5;
+}
+header{
+ padding:28px 20px 24px;
+ background:linear-gradient(145deg,#243c2b,#101713 78%);
+ border-bottom:1px solid var(--line);
+}
 .logo{font-size:29px;font-weight:850;letter-spacing:-1px}
 .logo span{color:var(--gold)}
 header p{color:var(--muted);margin:5px 0 0}
-main{max-width:720px;margin:auto;padding:20px 16px 48px}
+main{max-width:720px;margin:auto;padding:16px 16px 48px}
 h2{font-size:20px;margin:0 0 14px}
 h3{margin:0;font-size:17px}
-.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:18px}
+.panel{
+ background:var(--panel);
+ border:1px solid var(--line);
+ border-radius:16px;
+ padding:18px;
+ margin-bottom:18px;
+}
 .field{margin-bottom:18px}
 .field:last-child{margin-bottom:0}
 label{display:block;font-size:14px;font-weight:700;margin-bottom:7px}
 select,input[type=range]{width:100%}
-select{padding:12px;border-radius:9px;border:1px solid var(--line);background:#111a14;color:var(--text);font-size:16px}
+select{
+ padding:12px;
+ border-radius:9px;
+ border:1px solid var(--line);
+ background:#111a14;
+ color:var(--text);
+ font-size:16px;
+}
 input[type=range]{accent-color:var(--gold)}
 .range-line{display:flex;justify-content:space-between;gap:12px}
 .value{color:var(--gold);font-weight:700}
-button{border:1px solid var(--line);border-radius:10px;padding:12px 15px;font-size:15px;font-weight:700;background:#26372a;color:var(--text);cursor:pointer}
-button.primary{background:var(--gold);color:#172017;border-color:var(--gold);width:100%;padding:15px;font-size:17px}
-button:focus-visible,select:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+button{
+ border:1px solid var(--line);
+ border-radius:10px;
+ padding:12px 15px;
+ font-size:15px;
+ font-weight:700;
+ background:#26372a;
+ color:var(--text);
+ cursor:pointer;
+}
+button.primary{
+ background:var(--gold);
+ color:#172017;
+ border-color:var(--gold);
+ width:100%;
+ padding:15px;
+ font-size:17px;
+}
+button:focus-visible,select:focus-visible{
+ outline:2px solid var(--green);
+ outline-offset:3px;
+}
 .buttons{display:flex;flex-wrap:wrap;gap:9px}
 .buttons button.primary{width:auto}
-.eyebrow{color:var(--gold);font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase}
+.eyebrow{
+ color:var(--gold);
+ font-size:12px;
+ font-weight:800;
+ letter-spacing:1.5px;
+ text-transform:uppercase;
+}
 .intro{color:var(--muted);font-size:14px}
-.summary{border-radius:12px;background:#24372a;padding:15px;margin:14px 0;color:var(--green)}
+.summary{
+ border-radius:12px;
+ background:#24372a;
+ padding:15px;
+ margin:14px 0;
+ color:var(--green);
+}
 .track{padding:15px 0;border-bottom:1px solid var(--line)}
 .track:last-child{border-bottom:0}
 .track-top{display:flex;gap:12px;align-items:flex-start}
-.number{display:grid;place-items:center;min-width:34px;height:34px;border-radius:50%;background:#344735;color:var(--gold);font-weight:800}
+.number{
+ display:grid;
+ place-items:center;
+ min-width:34px;
+ height:34px;
+ border-radius:50%;
+ background:#344735;
+ color:var(--gold);
+ font-weight:800;
+}
 .track p{margin:6px 0;color:var(--muted);font-size:14px}
 .reason{font-size:13px!important;color:var(--green)!important}
-.badge{display:inline-block;color:var(--gold);font-size:11px;border:1px solid var(--line);border-radius:20px;padding:3px 8px;margin-top:7px}
+.badge{
+ display:inline-block;
+ color:var(--gold);
+ font-size:11px;
+ border:1px solid var(--line);
+ border-radius:20px;
+ padding:3px 8px;
+ margin-top:7px;
+}
+.app-nav{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:9px;
+ margin:0 0 18px;
+}
+.app-nav button{
+ padding:14px 10px;
+ border-radius:12px;
+ background:#17231b;
+ color:var(--muted);
+ border:1px solid var(--line);
+}
+.app-nav button[aria-current="page"]{
+ background:var(--gold);
+ color:#172017;
+ border-color:var(--gold);
+}
+.page-heading{margin:5px 0}
+.library-intro{margin:0 0 17px;color:var(--muted);font-size:14px}
 #audioPlaylist{list-style:none;padding:0;margin:12px 0 0}
-#audioPlaylist li{padding:9px 0;border-top:1px solid var(--line);font-size:14px;display:flex;justify-content:space-between;gap:10px;align-items:center}
+#audioPlaylist li{
+ padding:9px 0;
+ border-top:1px solid var(--line);
+ font-size:14px;
+ display:flex;
+ justify-content:space-between;
+ gap:10px;
+ align-items:center;
+}
 #audioPlaylist li span:first-child{overflow-wrap:anywhere}
 #audioPlaylist button{padding:7px 10px;font-size:13px;margin-left:5px}
 #audioPlayer{width:100%;margin-top:12px}
 .audio-controls{display:flex;flex-wrap:wrap;gap:9px;margin-top:10px}
 #playbackStatus{margin:10px 0;color:var(--green);font-size:14px}
 footer{padding:18px 0;color:var(--muted);font-size:12px;text-align:center}
-.hidden{display:none}
-@media(min-width:560px){.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}}
+.hidden{display:none!important}
+@media(min-width:560px){
+ .two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+}
 </style>
 </head>
+
 <body>
+
 <header>
-<div class="logo">jam<span>flow</span> ♪</div>
-<p>Your next live-music journey starts here.</p>
+ <div class="logo">jam<span>flow</span> ♪</div>
+ <p>Your next live-music journey starts here.</p>
 </header>
 
 <main>
+
+<nav class="app-nav" aria-label="Main navigation">
+ <button type="button" id="navBuild" aria-current="page">Build My Jam</button>
+ <button type="button" id="navLibrary" aria-current="false">Music Library</button>
+</nav>
+
+<!-- BUILD MY JAM PAGE -->
+
+<div id="buildPage">
+
 <section class="panel">
-<div class="eyebrow">Build your experience</div>
-<h2 style="margin-top:5px">Build My Jam</h2>
-<p class="intro">Shape a musical journey around your taste. JamFlow arranges a session with a beginning, a build, a peak, and a landing.</p>
+ <div class="eyebrow">Build your experience</div>
+ <h2 style="margin-top:5px">Build My Jam</h2>
+ <p class="intro">Shape a musical journey around your taste. JamFlow arranges a session with a beginning, a build, a peak, and a landing.</p>
 
-<div class="field">
-<label for="artist">Band selection</label>
-<select id="artist">
-<option value="both">Grateful Dead + Phish</option>
-<option value="dead">Grateful Dead</option>
-<option value="phish">Phish</option>
-</select>
-</div>
+ <div class="field">
+  <label for="artist">Band selection</label>
+  <select id="artist">
+   <option value="both">Grateful Dead + Phish</option>
+   <option value="dead">Grateful Dead</option>
+   <option value="phish">Phish</option>
+  </select>
+ </div>
 
-<div class="field">
-<label for="era">Era</label>
-<select id="era">
-<option value="any">Explore all eras</option>
-<option value="early">Early years</option>
-<option value="classic">Classic era</option>
-<option value="later">Later years</option>
-<option value="modern">Modern era</option>
-</select>
-</div>
+ <div class="field">
+  <label for="era">Era</label>
+  <select id="era">
+   <option value="any">Explore all eras</option>
+   <option value="early">Early years</option>
+   <option value="classic">Classic era</option>
+   <option value="later">Later years</option>
+   <option value="modern">Modern era</option>
+  </select>
+ </div>
 
-<div class="two">
-<div class="field">
-<div class="range-line">
-<label for="duration">Session length</label>
-<span class="value" id="durationValue">60 min</span>
-</div>
-<input id="duration" type="range" min="30" max="180" step="15" value="60">
-</div>
+ <div class="two">
+  <div class="field">
+   <div class="range-line">
+    <label for="duration">Session length</label>
+    <span class="value" id="durationValue">60 min</span>
+   </div>
+   <input id="duration" type="range" min="30" max="180" step="15" value="60">
+  </div>
 
-<div class="field">
-<div class="range-line">
-<label for="jam">Jam length</label>
-<span class="value" id="jamValue">Long</span>
-</div>
-<input id="jam" type="range" min="1" max="3" value="2">
-</div>
-</div>
+  <div class="field">
+   <div class="range-line">
+    <label for="jam">Jam length</label>
+    <span class="value" id="jamValue">Long</span>
+   </div>
+   <input id="jam" type="range" min="1" max="3" value="2">
+  </div>
+ </div>
 
-<div class="field">
-<label for="mood">Musical direction</label>
-<select id="mood">
-<option value="journey">A little of everything</option>
-<option value="spacey">Spacey and exploratory</option>
-<option value="bluesy">Bluesy and soulful</option>
-<option value="energetic">Energetic and driving</option>
-<option value="melodic">Melodic and beautiful</option>
-<option value="dark">Dark and intense</option>
-</select>
-</div>
+ <div class="field">
+  <label for="mood">Musical direction</label>
+  <select id="mood">
+   <option value="journey">A little of everything</option>
+   <option value="spacey">Spacey and exploratory</option>
+   <option value="bluesy">Bluesy and soulful</option>
+   <option value="energetic">Energetic and driving</option>
+   <option value="melodic">Melodic and beautiful</option>
+   <option value="dark">Dark and intense</option>
+  </select>
+ </div>
 
-<div class="field">
-<div class="range-line">
-<label for="intensity">Intensity</label>
-<span class="value" id="intensityValue">7/10</span>
-</div>
-<input id="intensity" type="range" min="1" max="10" value="7">
-</div>
+ <div class="field">
+  <div class="range-line">
+   <label for="intensity">Intensity</label>
+   <span class="value" id="intensityValue">7/10</span>
+  </div>
+  <input id="intensity" type="range" min="1" max="10" value="7">
+ </div>
 
-<div class="two">
-<div class="field">
-<label for="vocals">Vocals</label>
-<select id="vocals">
-<option value="mix">Mix of vocals and instrumentals</option>
-<option value="instrumental">Mostly instrumental</option>
-<option value="vocal">More songs with vocals</option>
-</select>
-</div>
-<div class="field">
-<label for="discovery">Discovery</label>
-<select id="discovery">
-<option value="balanced">Balanced</option>
-<option value="familiar">Familiar favorites</option>
-<option value="adventurous">Deep cuts and surprises</option>
-</select>
-</div>
-</div>
+ <div class="two">
+  <div class="field">
+   <label for="vocals">Vocals</label>
+   <select id="vocals">
+    <option value="mix">Mix of vocals and instrumentals</option>
+    <option value="instrumental">Mostly instrumental</option>
+    <option value="vocal">More songs with vocals</option>
+   </select>
+  </div>
 
-<div class="field">
-<label for="repeat">Repeat preference</label>
-<select id="repeat">
-<option value="session">Avoid repeats in this session</option>
-<option value="flexible">Allow a repeat if it fits</option>
-</select>
-</div>
+  <div class="field">
+   <label for="discovery">Discovery</label>
+   <select id="discovery">
+    <option value="balanced">Balanced</option>
+    <option value="familiar">Familiar favorites</option>
+    <option value="adventurous">Deep cuts and surprises</option>
+   </select>
+  </div>
+ </div>
 
-<button class="primary" id="build">Build My Jam ↗</button>
-</section>
+ <div class="field">
+  <label for="repeat">Repeat preference</label>
+  <select id="repeat">
+   <option value="session">Avoid repeats in this session</option>
+   <option value="flexible">Allow a repeat if it fits</option>
+  </select>
+ </div>
 
-<section class="panel" aria-label="Saved music library">
-<div class="eyebrow">Your music library</div>
-<h2 style="margin-top:5px">Saved Audio</h2>
-<p class="intro">Import recordings once and JamFlow will keep them in this browser on this iPhone. Your recordings stay on your device and are not uploaded.</p>
-<label for="audioFiles">Add MP3 or other audio files</label>
-<input id="audioFiles" type="file" accept="audio/*,.mp3,.m4a,.wav,.ogg" multiple>
-<p id="audioStatus" class="intro" aria-live="polite">Opening your saved music library…</p>
-<ul id="audioPlaylist"></ul>
-<div class="audio-controls">
-<button id="audioPrevious" type="button">Previous</button>
-<button id="audioNext" type="button">Next</button>
-<button id="clearLibrary" type="button">Clear Library</button>
-</div>
-<audio id="audioPlayer" controls preload="metadata"></audio>
+ <button class="primary" id="build">Build My Jam ↗</button>
 </section>
 
 <section id="results" class="panel hidden" aria-live="polite">
-<div class="eyebrow">Your personalized set</div>
-<h2 id="sessionTitle">Your JamFlow Session</h2>
-<p class="intro" id="sessionDescription"></p>
-<div class="summary" id="sessionSummary"></div>
-<div id="tracks"></div>
-<p id="sessionNote" class="intro"></p>
-<p id="playbackStatus" aria-live="polite">Build a jam to prepare your playback order.</p>
-<div class="buttons">
-<button class="primary" id="playJam">Play Jam ▶</button>
-<button id="more">More Like This ↻</button>
-<button id="change">Change Direction ⇢</button>
-<button id="explore">Explore More ✦</button>
-</div>
+ <div class="eyebrow">Your personalized set</div>
+ <h2 id="sessionTitle">Your JamFlow Session</h2>
+ <p class="intro" id="sessionDescription"></p>
+ <div class="summary" id="sessionSummary"></div>
+ <div id="tracks"></div>
+ <p id="sessionNote" class="intro"></p>
+ <p id="playbackStatus" aria-live="polite">Build a jam to prepare your playback order.</p>
+
+ <div class="buttons">
+  <button class="primary" id="playJam">Play Jam ▶</button>
+  <button id="more">More Like This ↻</button>
+  <button id="change">Change Direction ⇢</button>
+  <button id="explore">Explore More ✦</button>
+ </div>
 </section>
 
+</div>
+
+<!-- SEPARATE MUSIC LIBRARY PAGE -->
+
+<div id="libraryPage" class="hidden">
+
+<section class="panel" aria-label="Saved music library">
+ <div class="eyebrow">Your collection</div>
+ <h2 class="page-heading">Music Library</h2>
+ <p class="library-intro">Your imported recordings live here, separate from the concert builder. Add, play, and organize your music without cluttering Build My Jam.</p>
+
+ <div class="eyebrow">Saved recordings</div>
+ <p class="intro">Recordings are saved locally in this browser on this iPhone. They are not uploaded to a server.</p>
+
+ <label for="audioFiles">Import music files</label>
+ <input id="audioFiles" type="file" accept="audio/*,.mp3,.m4a,.wav,.ogg" multiple>
+
+ <p id="audioStatus" class="intro" aria-live="polite">Opening your saved music library…</p>
+
+ <ul id="audioPlaylist"></ul>
+
+ <div class="audio-controls">
+  <button id="audioPrevious" type="button">Previous</button>
+  <button id="audioNext" type="button">Next</button>
+  <button id="clearLibrary" type="button">Clear Library</button>
+ </div>
+
+ <audio id="audioPlayer" controls preload="metadata"></audio>
+</section>
+
+</div>
+
 <footer>
-JamFlow prototype · Built for the love of live music<br>
-Session recommendations are illustrative, not verified recordings.
+ JamFlow prototype · Built for the love of live music<br>
+ Session recommendations are illustrative, not verified recordings.
 </footer>
+
 </main>
 
 <script>
 const $=id=>document.getElementById(id);
+
+/* PAGE NAVIGATION */
+
+function showPage(page){
+ const buildVisible=page==="build";
+
+ $("buildPage").classList.toggle("hidden",!buildVisible);
+ $("libraryPage").classList.toggle("hidden",buildVisible);
+
+ $("navBuild").setAttribute("aria-current",buildVisible?"page":"false");
+ $("navLibrary").setAttribute("aria-current",buildVisible?"false":"page");
+
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+
+$("navBuild").addEventListener("click",()=>showPage("build"));
+$("navLibrary").addEventListener("click",()=>showPage("library"));
+
+/* LOCAL MUSIC STORAGE */
 
 const audioInput=$("audioFiles");
 const playlist=$("audioPlaylist");
@@ -260,6 +421,7 @@ async function refreshLibrary(){
  urls=[];
 
  files=await storeRequest("readonly",store=>store.getAll());
+
  current=-1;
  setlistFileIndexes=[];
  setlistPosition=0;
@@ -339,6 +501,7 @@ function playSetlist(i=0){
 audioInput.addEventListener("change",async()=>{
  const incoming=Array.from(audioInput.files||[]);
  audioInput.value="";
+
  if(!incoming.length)return;
 
  status.textContent="Saving "+incoming.length+" recording(s) to this iPhone…";
@@ -360,6 +523,7 @@ audioInput.addEventListener("change",async()=>{
 
   await refreshLibrary();
   status.textContent="Saved successfully. "+files.length+" recording(s) are now in your library.";
+
  }catch(error){
   status.textContent="The browser could not save the files. Check available iPhone storage and try fewer files. "+error.message;
  }
@@ -401,6 +565,8 @@ player.addEventListener("ended",()=>{
 openLibrary().then(refreshLibrary).catch(error=>{
  status.textContent="Saved music storage is unavailable. Open JamFlow in Safari (not a private tab) and try again. "+error.message;
 });
+
+/* JAMFLOW MUSIC CATALOG */
 
 const library={
 dead:[
@@ -465,7 +631,7 @@ function settings(){
  };
 }
 
-/* IMPROVED RECORDING MATCHING */
+/* RECORDING MATCHING */
 
 function normalizeAudioName(value){
  return value.toLowerCase()
@@ -513,6 +679,8 @@ function findRecording(title,unused){
  return candidates[0].idx;
 }
 
+/* CONCERT BUILDER */
+
 function build(){
  const s=settings();
  let pool=[];
@@ -531,6 +699,7 @@ function build(){
  );
 
  let fallback=false;
+
  if(!filtered.length){
   filtered=pool;
   fallback=true;
@@ -587,10 +756,8 @@ function build(){
   if(s.repeat==="session")used.add(t[0]);
  }
 
- // Only use recordings with a reasonably strong filename match.
- // Unmatched songs remain visible but are never substituted with unrelated audio.
-
  setlistFileIndexes=[];
+
  const matchedByTrack=new Map();
  const unused=new Set(files.map((f,i)=>i));
 
@@ -686,9 +853,9 @@ $("playJam").addEventListener("click",()=>{
 });
 
 $("change").addEventListener("click",()=>{
- const m=["spacey","bluesy","energetic","melodic","dark","journey"];
- const cur=$("mood").value;
- $("mood").value=m.find(x=>x!==cur);
+ const moods=["spacey","bluesy","energetic","melodic","dark","journey"];
+ const currentMood=$("mood").value;
+ $("mood").value=moods.find(x=>x!==currentMood);
  build();
 });
 
@@ -698,6 +865,7 @@ $("explore").addEventListener("click",()=>{
  $("mood").value="spacey";
  build();
 });
+
 </script>
 </body>
 </html>
