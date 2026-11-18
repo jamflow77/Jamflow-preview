@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -80,7 +79,6 @@ footer{padding:18px 0;color:var(--muted);font-size:12px;text-align:center}
  <button type="button" id="navLibrary" aria-current="false">Music Library</button>
 </nav>
 
-<!-- BUILD MY JAM -->
 <div id="buildPage">
 <section class="panel">
  <div class="eyebrow">Build your experience</div>
@@ -157,7 +155,6 @@ footer{padding:18px 0;color:var(--muted);font-size:12px;text-align:center}
 </section>
 </div>
 
-<!-- MUSIC LIBRARY -->
 <div id="libraryPage" class="hidden">
 <section class="panel" id="libraryHome">
  <div class="eyebrow">Your collection</div>
@@ -222,7 +219,6 @@ footer{padding:18px 0;color:var(--muted);font-size:12px;text-align:center}
 </section>
 </div>
 
-<!-- PLAYER STAYS VISIBLE ON BOTH SCREENS -->
 <section id="sharedPlayer" class="panel">
  <div class="eyebrow">Now playing</div>
  <div class="player-title" id="nowPlaying">Choose a concert or Build My Jam to begin.</div>
@@ -243,7 +239,6 @@ footer{padding:18px 0;color:var(--muted);font-size:12px;text-align:center}
 <script>
 const $=id=>document.getElementById(id);
 
-/* NAVIGATION */
 function showPage(page){
  const build=page==="build";
  $("buildPage").classList.toggle("hidden",!build);
@@ -261,7 +256,6 @@ function showPage(page){
 $("navBuild").onclick=()=>showPage("build");
 $("navLibrary").onclick=()=>showPage("library");
 
-/* EXISTING LOCAL DATABASE — KEEP COMPATIBLE */
 const audioInput=$("audioFiles");
 const player=$("player");
 let files=[],urls=[],current=-1;
@@ -399,7 +393,6 @@ function renderConcerts(){
 }
 $("searchConcerts").addEventListener("input",renderConcerts);
 
-/* LIBRARY HOME AND CONCERT BROWSING */
 function showAllConcerts(){
  $("libraryHome").classList.add("hidden");
  $("concertDetail").classList.add("hidden");
@@ -446,7 +439,6 @@ function showConcertDetail(key){
  openConcert(key);
 }
 
-/* CONCERT TRACKLIST */
 function openConcert(key){
  const concert=groupConcerts().find(c=>c.key===key);
  if(!concert)return;
@@ -508,7 +500,6 @@ async function deleteConcertByKey(key){
 }
 $("deleteConcert").onclick=()=>deleteConcertByKey(activeConcertKey);
 
-/* AUDIO PLAYBACK */
 function playLibraryTrack(i){
  if(!files.length)return;
  current=(i+files.length)%files.length;
@@ -555,7 +546,6 @@ function previousLibraryTrack(){
  if(files.length)playLibraryTrack((current-1+files.length)%files.length);
 }
 
-/* IMPORT RECORDINGS */
 audioInput.addEventListener("change",async()=>{
  const incoming=Array.from(audioInput.files||[]);
  audioInput.value="";
@@ -605,7 +595,6 @@ openLibrary().then(refreshLibrary).catch(e=>{
  $("builderStatus").textContent="Could not open your saved music library.";
 });
 
-/* PLAYER CONTROLS */
 $("nextTrack").onclick=()=>playingConcert?nextConcertTrack():nextLibraryTrack();
 $("previousTrack").onclick=()=>playingConcert?previousConcertTrack():previousLibraryTrack();
 player.addEventListener("ended",()=>{
@@ -614,7 +603,6 @@ player.addEventListener("ended",()=>{
  else $("nowPlaying").textContent="Playback finished.";
 });
 
-/* BUILD MY JAM */
 function sync(){
  $("durationValue").textContent=$("duration").value+" min";
  $("intensityValue").textContent=$("intensity").value+"/10";
@@ -641,10 +629,15 @@ function build(){
   return;
  }
  const s=settings();
- let pool=files.map((r,i)=>({
-  index:i,name:r.name,title:trackLabel(r),
-  band:getBand(r.name),mood:getMood(r.name)
- }));
+ let pool=files.map((r,i)=>{
+  const concert=concertFor(r);
+  return {
+   index:i,name:r.name,title:trackLabel(r),
+   band:getBand(r.name),mood:getMood(r.name),
+   concertKey:concert.key,concertName:concert.name,
+   concertArtist:concert.artist,concertDate:concert.date
+  };
+ });
  if(s.artist!=="both"){
   const identified=pool.filter(t=>t.band===s.artist);
   const unknown=pool.filter(t=>t.band==="unknown");
@@ -656,11 +649,12 @@ function build(){
  }
  const target=Math.max(4,Math.min(12,Math.round(s.duration/(s.jam===1?9:s.jam===2?12:16))));
  const count=Math.min(target,pool.length);
- const remaining=pool.slice();
  const selected=[];
  const stages=["Opening","Build","Peak","Cooldown"];
+ const concertUse=new Map();
+
  function score(t,stage){
-  let p=Math.random()*3;
+  let p=Math.random()*2;
   if(s.mood!=="journey"&&t.mood===s.mood)p+=5;
   if(s.discovery==="familiar"&&/bertha|sugar magnolia|tweezer|eyes of the world|ghost|reba/i.test(t.name))p+=3;
   if(s.discovery==="adventurous"&&/dark star|bird song|reba|carini|sand|space|other one/i.test(t.name))p+=5;
@@ -673,17 +667,36 @@ function build(){
   if(s.jam===1&&/short|compact|deal|cavern/i.test(t.name))p+=1;
   return p;
  }
+
+ // Spread selections across concerts and avoid consecutive tracks from one show.
  for(let i=0;i<count;i++){
   const stage=stages[Math.min(3,Math.floor(i/count*4))];
-  remaining.sort((a,b)=>score(b,stage)-score(a,stage));
-  selected.push({...remaining.shift(),stage});
+  const lastKey=selected.length?selected[selected.length-1].concertKey:null;
+  let candidates=pool.filter(t=>!selected.some(x=>x.index===t.index));
+  if(lastKey){
+   const alternatives=candidates.filter(t=>t.concertKey!==lastKey);
+   if(alternatives.length)candidates=alternatives;
+  }
+  if(!candidates.length)break;
+  const ranked=candidates.map(t=>({...t,rank:score(t,stage)}));
+  ranked.sort((a,b)=>{
+   const useA=concertUse.get(a.concertKey)||0;
+   const useB=concertUse.get(b.concertKey)||0;
+   return (b.rank-useB*4)-(a.rank-useA*4);
+  });
+  const chosen=ranked[0];
+  selected.push({...chosen,stage});
+  concertUse.set(chosen.concertKey,(concertUse.get(chosen.concertKey)||0)+1);
  }
+
  setlistFileIndexes=selected.map(t=>t.index);
  setlistPosition=0;
  playingConcert=true;
  $("sessionTitle").textContent="Your JamFlow Concert";
  $("sessionDescription").textContent=selected.length+" recordings · "+s.duration+" minute target · "+s.intensity+"/10 intensity";
- $("sessionSummary").textContent="Direction: "+s.mood+". Built from your own saved recordings.";
+ const showCount=new Set(selected.map(t=>t.concertKey)).size;
+ $("sessionSummary").textContent="Direction: "+s.mood+". Mixed from "+showCount+" concert"+(showCount===1?"":"s")+". Built from your own saved recordings.";
+
  const host=$("tracks");
  host.innerHTML="";
  selected.forEach((t,i)=>{
@@ -703,7 +716,7 @@ function build(){
   title.textContent=t.title;
   const badge=document.createElement("div");
   badge.className="badge";
-  badge.textContent=(t.band==="dead"?"Grateful Dead":t.band==="phish"?"Phish":"Library")+" · "+t.mood;
+  badge.textContent=(t.band==="dead"?"Grateful Dead":t.band==="phish"?"Phish":"Library")+" · "+t.mood+" · "+t.concertName;
   const note=document.createElement("p");
   note.className="reason";
   note.textContent="Selected from your saved music library.";
