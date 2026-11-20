@@ -1,71 +1,59 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#101713">
 <title>JamFlow — Live Music Journey</title>
 <style>
 :root{
  color-scheme:dark;
  --bg:#101713;--panel:#1b2720;--line:#35473a;
- --text:#f5f5e9;--muted:#b7c4b7;--gold:#e6c477;--green:#b9e5ad;
+ --text:#f5f5e9;--muted:#b7c4b7;--gold:#e6c477;--green:#b9e5ad
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);
  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}
-header{padding:28px 20px 24px;background:linear-gradient(145deg,#243c2b,#101713 78%);border-bottom:1px solid var(--line)}
+header{padding:26px 20px;background:linear-gradient(145deg,#243c2b,#101713 78%);border-bottom:1px solid var(--line)}
 .logo{font-size:29px;font-weight:850;letter-spacing:-1px}
 .logo span{color:var(--gold)}
 header p{color:var(--muted);margin:5px 0 0}
-main{max-width:720px;margin:auto;padding:16px 16px 48px}
-h2{font-size:20px;margin:0 0 14px}
-h3{margin:0;font-size:17px}
-.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:18px}
-.field{margin-bottom:16px}
+main{max-width:760px;margin:auto;padding:16px 16px 48px}
+h2{font-size:20px;margin:0 0 12px}
+h3{font-size:17px;margin:0}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:17px;margin-bottom:17px}
+.eyebrow{color:var(--gold);font-size:12px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase}
+.intro,.meta{color:var(--muted);font-size:14px}
 label{display:block;font-size:14px;font-weight:700;margin-bottom:7px}
 input,select{width:100%;padding:12px;border-radius:9px;border:1px solid var(--line);background:#111a14;color:var(--text);font-size:16px}
-input[type=file]{padding:10px}
 input[type=range]{padding:0;accent-color:var(--gold)}
-button{border:1px solid var(--line);border-radius:10px;padding:12px 15px;font-size:15px;font-weight:700;background:#26372a;color:var(--text);cursor:pointer}
-button.primary{background:var(--gold);color:#172017;border-color:var(--gold);width:100%;padding:15px;font-size:17px}
+input[type=file]{padding:10px}
+button{border:1px solid var(--line);border-radius:10px;padding:11px 14px;font-size:14px;font-weight:700;background:#26372a;color:var(--text);cursor:pointer}
+button.primary{background:var(--gold);color:#172017;border-color:var(--gold)}
+button:disabled{opacity:.45}
 button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--green);outline-offset:3px}
-.buttons{display:flex;flex-wrap:wrap;gap:9px}
-.buttons button.primary{width:auto}
-.eyebrow{color:var(--gold);font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase}
-.intro,.library-intro{color:var(--muted);font-size:14px}
-.summary{border-radius:12px;background:#24372a;padding:15px;margin:14px 0;color:var(--green)}
-.track{padding:14px 0;border-bottom:1px solid var(--line)}
-.track:last-child{border-bottom:0}
-.track-top{display:flex;gap:12px;align-items:flex-start}
-.number{display:grid;place-items:center;min-width:34px;height:34px;border-radius:50%;background:#344735;color:var(--gold);font-weight:800}
-.track p{margin:6px 0;color:var(--muted);font-size:14px}
-.reason{font-size:13px!important;color:var(--green)!important}
-.badge{display:inline-block;color:var(--gold);font-size:11px;border:1px solid var(--line);border-radius:20px;padding:3px 8px;margin-top:7px}
-.app-nav{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:0 0 18px}
-.app-nav button{padding:14px 10px;border-radius:12px;background:#17231b;color:var(--muted);border:1px solid var(--line)}
-.app-nav button[aria-current=page]{background:var(--gold);color:#172017;border-color:var(--gold)}
+.nav{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:17px}
+.nav button{padding:13px 5px;background:#17231b;color:var(--muted)}
+.nav button.active{background:var(--gold);color:#172017}
+.buttons{display:flex;flex-wrap:wrap;gap:9px;margin:12px 0}
+.field{margin-bottom:15px}
 .hidden{display:none!important}
-.concert-card{border:1px solid var(--line);border-radius:14px;padding:15px;margin:12px 0;background:#17231b}
-.concert-card h3{margin-bottom:4px}
-.concert-meta{font-size:13px;color:var(--muted);margin:4px 0 12px}
-.concert-actions{display:flex;gap:8px;flex-wrap:wrap}
-.concert-actions button{flex:1;min-width:100px}
-.track-row{display:flex;gap:10px;align-items:center;border-top:1px solid var(--line);padding:11px 0}
-.track-row .track-name{flex:1;min-width:0;overflow-wrap:anywhere}
-.track-row button{padding:8px 10px;font-size:13px}
-.track-row .remove-track{padding:7px 9px}
-#searchConcerts{margin:0 0 12px}
+.card{border:1px solid var(--line);border-radius:13px;padding:14px;margin:11px 0;background:#17231b}
+.card h3{margin-bottom:5px}
+.card .meta{margin:4px 0 12px}
+.card-actions{display:flex;flex-wrap:wrap;gap:8px}
+.card-actions button{flex:1}
+.track{padding:12px 0;border-bottom:1px solid var(--line)}
+.track:last-child{border-bottom:0}
+.track-row{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.track-row span{flex:1;overflow-wrap:anywhere;font-size:14px}
+.track-row button{padding:8px}
+.badge{display:inline-block;color:var(--gold);font-size:11px;border:1px solid var(--line);border-radius:20px;padding:3px 8px;margin:5px 4px 0 0}
+.summary{background:#24372a;padding:13px;border-radius:11px;color:var(--green);margin:12px 0}
 #player{width:100%;margin-top:12px}
-.audio-controls{display:flex;flex-wrap:wrap;gap:9px;margin-top:10px}
-#playbackStatus,#audioStatus{margin:10px 0;color:var(--green);font-size:14px}
-.player-title{font-size:14px;color:var(--gold);overflow-wrap:anywhere}
-.back-button{margin-bottom:12px}
-.library-home-actions{margin:12px 0 18px}
-#sharedPlayer audio{width:100%;margin-top:12px}
-#sharedPlayer .audio-controls{margin-top:10px}
-footer{padding:18px 0;color:var(--muted);font-size:12px;text-align:center}
-@media(min-width:560px){.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}}
+.status{font-size:14px;color:var(--green);margin:10px 0}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}
 </style>
 </head>
 <body>
@@ -74,211 +62,258 @@ footer{padding:18px 0;color:var(--muted);font-size:12px;text-align:center}
  <p>Your next live-music journey starts here.</p>
 </header>
 <main>
-<nav class="app-nav" aria-label="Main navigation">
- <button type="button" id="navBuild" aria-current="page">Build My Jam</button>
- <button type="button" id="navLibrary" aria-current="false">Music Library</button>
+<nav class="nav">
+ <button id="navBuild" class="active">Build My Jam</button>
+ <button id="navLibrary">Music Library</button>
 </nav>
 
+<!-- BUILD MY JAM -->
 <div id="buildPage">
 <section class="panel">
- <div class="eyebrow">Build your experience</div>
- <h2 style="margin-top:5px">Build My Jam</h2>
- <p class="intro">JamFlow builds a concert from your saved recordings.</p>
+ <div class="eyebrow">Your music journey</div>
+ <h2>Build My Jam</h2>
+ <p class="intro">Create a concert from your saved recordings.</p>
 
  <div class="field">
-  <label for="artist">Band selection</label>
-  <select id="artist">
-   <option value="both">All recordings</option>
-   <option value="dead">Grateful Dead</option>
-   <option value="phish">Phish</option>
-  </select>
+ <label for="artist">Band selection</label>
+ <select id="artist">
+ <option value="both">All recordings</option>
+ <option value="dead">Grateful Dead</option>
+ <option value="phish">Phish</option>
+ </select>
  </div>
+
  <div class="field">
-  <label for="duration">Concert length</label>
-  <div style="display:flex;justify-content:space-between"><span class="intro">Shorter</span><span class="value" id="durationValue">60 min</span><span class="intro">Longer</span></div>
-  <input id="duration" type="range" min="30" max="180" step="15" value="60">
+ <label for="duration">Concert length</label>
+ <div id="durationValue">60 min</div>
+ <input id="duration" type="range" min="30" max="180" step="15" value="60">
  </div>
+
  <div class="field">
-  <label for="jam">Jam preference</label>
-  <select id="jam">
-   <option value="1">Shorter tracks and tighter flow</option>
-   <option value="2" selected>Long exploratory jams</option>
-   <option value="3">Extended, epic journey</option>
-  </select>
+ <label for="jam">Jam preference</label>
+ <select id="jam">
+ <option value="1">Shorter tracks</option>
+ <option value="2" selected>Long exploratory jams</option>
+ <option value="3">Extended epic journey</option>
+ </select>
  </div>
+
  <div class="field">
-  <label for="mood">Musical direction</label>
-  <select id="mood">
-   <option value="journey">A little of everything</option>
-   <option value="spacey">Spacey and exploratory</option>
-   <option value="bluesy">Bluesy and soulful</option>
-   <option value="energetic">Energetic and driving</option>
-   <option value="melodic">Melodic and beautiful</option>
-   <option value="dark">Dark and intense</option>
-  </select>
+ <label for="mood">Musical direction</label>
+ <select id="mood">
+ <option value="journey">A little of everything</option>
+ <option value="spacey">Spacey and exploratory</option>
+ <option value="bluesy">Bluesy and soulful</option>
+ <option value="energetic">Energetic and driving</option>
+ <option value="melodic">Melodic and beautiful</option>
+ <option value="dark">Dark and intense</option>
+ </select>
  </div>
+
  <div class="field">
-  <div style="display:flex;justify-content:space-between"><label for="intensity">Intensity</label><span class="value" id="intensityValue">7/10</span></div>
-  <input id="intensity" type="range" min="1" max="10" value="7">
+ <label for="intensity">Intensity: <span id="intensityValue">7</span>/10</label>
+ <input id="intensity" type="range" min="1" max="10" value="7">
  </div>
+
  <div class="field">
-  <label for="discovery">Concert style</label>
-  <select id="discovery">
-   <option value="balanced">Balanced journey</option>
-   <option value="familiar">Familiar favorites</option>
-   <option value="adventurous">Unexpected discoveries</option>
-  </select>
+ <label for="repeat">Repeat preference</label>
+ <select id="repeat">
+ <option value="session">No repeats in this concert</option>
+ <option value="flexible">Allow repeats if needed</option>
+ </select>
  </div>
- <div class="field">
-  <label for="repeat">Repeat preference</label>
-  <select id="repeat">
-   <option value="session">No repeats in this concert</option>
-   <option value="flexible">Allow repeats if needed</option>
-  </select>
- </div>
+
  <button class="primary" id="build">Build My Jam ↗</button>
- <p class="intro" id="builderStatus" aria-live="polite">Checking saved recordings…</p>
+ <p id="builderStatus" class="status">Loading saved recordings…</p>
 </section>
 
-<section id="results" class="panel hidden" aria-live="polite">
+<section id="results" class="panel hidden">
  <div class="eyebrow">Your personalized concert</div>
- <h2 id="sessionTitle">Your JamFlow Session</h2>
- <p class="intro" id="sessionDescription"></p>
- <div class="summary" id="sessionSummary"></div>
+ <h2>Your JamFlow Concert</h2>
+ <p id="sessionDescription" class="intro"></p>
+ <div id="sessionSummary" class="summary"></div>
  <div id="tracks"></div>
- <p id="sessionNote" class="intro"></p>
+ <p class="intro">Musical mood and sequencing are estimated from track names. Audio analysis and seamless transitions are future upgrades.</p>
  <div class="buttons">
-  <button class="primary" id="playJam">Play Concert ▶</button>
-  <button id="more">Build Another ↻</button>
-  <button id="change">Change Direction ⇢</button>
+ <button class="primary" id="playJam">Play Concert ▶</button>
+ <button id="more">Build Another ↻</button>
  </div>
 </section>
 </div>
 
+<!-- MUSIC LIBRARY -->
 <div id="libraryPage" class="hidden">
+
 <section class="panel" id="libraryHome">
  <div class="eyebrow">Your collection</div>
  <h2>Music Library</h2>
- <p class="library-intro">Your recordings are saved on this device and organized by concert.</p>
- <div class="buttons library-home-actions">
-  <button class="primary" id="viewAllConcerts" type="button">View All Concerts</button>
+ <p class="intro">Your recordings are saved in this browser.</p>
+
+ <div class="buttons">
+ <button class="primary" id="viewAll">View All Concerts</button>
+ <button id="showFinder">Find Concerts +</button>
  </div>
+
  <div id="recentConcerts"></div>
- <h3 style="margin-bottom:10px">Import a concert</h3>
+
+ <div class="divider"></div>
+ <h3>Import a concert</h3>
+ <p class="intro">Import audio files you have downloaded or already own.</p>
+
  <div class="field">
-  <label for="concertName">Concert name (required)</label>
-  <input id="concertName" placeholder="Example: Cornell University">
- </div>
- <div class="two">
-  <div class="field">
-   <label for="concertArtist">Artist</label>
-   <select id="concertArtist">
-    <option value="Grateful Dead">Grateful Dead</option>
-    <option value="Phish">Phish</option>
-    <option value="Other">Other</option>
-   </select>
-  </div>
-  <div class="field">
-   <label for="concertDate">Date</label>
-   <input id="concertDate" type="date">
-  </div>
+ <label for="concertName">Concert name</label>
+ <input id="concertName" placeholder="Example: Cornell University">
  </div>
  <div class="field">
-  <label for="concertVenue">Venue / location (optional)</label>
-  <input id="concertVenue" placeholder="Example: Barton Hall, Cornell University">
+ <label for="concertArtist">Artist</label>
+ <select id="concertArtist">
+ <option>Grateful Dead</option>
+ <option>Phish</option>
+ <option>Other</option>
+ </select>
  </div>
  <div class="field">
-  <label for="audioFiles">Select the tracks for this concert</label>
-  <input id="audioFiles" type="file" accept="audio/*,.mp3,.m4a,.wav,.ogg" multiple>
+ <label for="concertDate">Performance date</label>
+ <input id="concertDate" type="date">
  </div>
- <p id="audioStatus" class="intro" aria-live="polite">Saved music is loaded from this browser.</p>
- <div class="audio-controls">
-  <button id="clearLibrary" type="button">Clear Entire Library</button>
+ <div class="field">
+ <label for="concertVenue">Venue</label>
+ <input id="concertVenue" placeholder="Optional">
  </div>
+ <div class="field">
+ <label for="audioFiles">Choose audio files</label>
+ <input id="audioFiles" type="file" accept="audio/*,.mp3,.m4a,.wav,.ogg" multiple>
+ </div>
+ <p id="audioStatus" class="status">Ready to import.</p>
 </section>
 
+<!-- CONCERT FINDER -->
+<section id="finderPage" class="panel hidden">
+ <button id="backHome">← Music Library</button>
+ <div class="eyebrow" style="margin-top:15px">Discover live music</div>
+ <h2>Concert Finder</h2>
+ <p class="intro">Search the Internet Archive's Grateful Dead concert collection.</p>
+
+ <div class="field">
+ <label for="finderSearch">Search by date, year, venue or keywords</label>
+ <input id="finderSearch" placeholder="Example: Cornell, 1977, Barton Hall">
+ </div>
+ <div class="field">
+ <label for="finderYear">Performance year</label>
+ <select id="finderYear">
+ <option value="">All years</option>
+ </select>
+ </div>
+ <button class="primary" id="searchArchive" style="width:100%">Search Concert Collection</button>
+ <p id="finderStatus" class="status">Ready to search.</p>
+ <div id="finderResults"></div>
+ <p class="intro">Source: Internet Archive. Only recordings offered for download by the archive will be presented as downloadable.</p>
+</section>
+
+<!-- CONCERT INFORMATION -->
+<section id="finderDetail" class="panel hidden">
+ <button id="backFinder">← Search Results</button>
+ <div class="eyebrow" style="margin-top:15px">Concert information</div>
+ <h2 id="finderTitle"></h2>
+ <p id="finderMeta" class="intro"></p>
+ <div id="finderDescription" class="intro"></div>
+ <p id="finderAccess" class="status"></p>
+ <h3>Available audio tracks</h3>
+ <div id="finderTracks"></div>
+ <p class="intro">Use the download links, then import the downloaded files into JamFlow from Music Library.</p>
+ <button id="downloadAll" class="primary" style="width:100%">Download All Available Tracks</button>
+</section>
+
+<!-- CONCERT LIST -->
 <section id="concertBrowse" class="panel hidden">
- <button id="backLibraryHome" class="back-button" type="button">← Back to Library</button>
- <div class="eyebrow">Your collection</div>
- <h2>All Concerts</h2>
- <label for="searchConcerts">Search your concerts</label>
- <input id="searchConcerts" placeholder="Artist, venue, concert, date…">
+ <button id="backLibrary">← Music Library</button>
+ <h2 style="margin-top:15px">All Concerts</h2>
+ <input id="searchConcerts" placeholder="Search saved concerts">
  <div id="concertList"></div>
 </section>
 
+<!-- SAVED CONCERT DETAIL -->
 <section id="concertDetail" class="panel hidden">
- <button id="backConcerts" class="back-button" type="button">← Back to Concerts</button>
- <div class="eyebrow">Concert tracklist</div>
- <h2 id="detailTitle"></h2>
- <p class="library-intro" id="detailMeta"></p>
+ <button id="backConcerts">← All Concerts</button>
+ <h2 id="detailTitle" style="margin-top:15px"></h2>
+ <p id="detailMeta" class="intro"></p>
  <div class="buttons">
-  <button class="primary" id="playEntireShow">Play Entire Concert ▶</button>
-  <button id="deleteConcert">Delete Concert</button>
+ <button class="primary" id="playEntireShow">Play Entire Concert ▶</button>
+ <button id="deleteConcert">Delete Concert</button>
  </div>
- <div id="detailTracks" style="margin-top:14px"></div>
+ <div id="detailTracks"></div>
 </section>
 </div>
 
-<section id="sharedPlayer" class="panel">
+<!-- PLAYER -->
+<section class="panel">
  <div class="eyebrow">Now playing</div>
- <div class="player-title" id="nowPlaying">Choose a concert or Build My Jam to begin.</div>
+ <div id="nowPlaying" class="status">Choose a concert to begin.</div>
  <audio id="player" controls preload="metadata"></audio>
- <div class="audio-controls">
-  <button id="previousTrack" type="button">Previous</button>
-  <button id="nextTrack" type="button">Next</button>
+ <div class="buttons">
+ <button id="previousTrack">Previous</button>
+ <button id="nextTrack">Next</button>
  </div>
- <p id="playbackStatus" aria-live="polite">Your concert is ready.</p>
+ <p id="playbackStatus" class="intro">Your music is ready.</p>
 </section>
 
-<footer>
- JamFlow prototype · Built for the love of live music<br>
- Your recordings are stored locally in this browser.
-</footer>
+<footer>JamFlow · Built for the love of live music<br>
+Your saved recordings remain in this browser.</footer>
 </main>
 
 <script>
 const $=id=>document.getElementById(id);
+const player=$("player");
+let db=null,files=[],urls=[],current=-1;
+let setlist=[],setPosition=0,playingConcert=false;
+let activeConcertKey=null;
+let selectedArchive=null;
+let selectedArchiveFiles=[];
 
 function showPage(page){
  const build=page==="build";
  $("buildPage").classList.toggle("hidden",!build);
  $("libraryPage").classList.toggle("hidden",build);
- if(!build){
-  $("libraryHome").classList.remove("hidden");
-  $("concertBrowse").classList.add("hidden");
-  $("concertDetail").classList.add("hidden");
-  renderRecentConcerts();
- }
- $("navBuild").setAttribute("aria-current",build?"page":"false");
- $("navLibrary").setAttribute("aria-current",build?"false":"page");
+ $("navBuild").classList.toggle("active",build);
+ $("navLibrary").classList.toggle("active",!build);
+ if(!build)showLibraryHome();
  window.scrollTo({top:0,behavior:"smooth"});
 }
 $("navBuild").onclick=()=>showPage("build");
 $("navLibrary").onclick=()=>showPage("library");
 
-const audioInput=$("audioFiles");
-const player=$("player");
-let files=[],urls=[],current=-1;
-let setlistFileIndexes=[],setlistPosition=0;
-let db=null,playingConcert=false,activeConcertKey=null;
+function showLibraryHome(){
+ $("libraryHome").classList.remove("hidden");
+ $("finderPage").classList.add("hidden");
+ $("finderDetail").classList.add("hidden");
+ $("concertBrowse").classList.add("hidden");
+ $("concertDetail").classList.add("hidden");
+ renderRecent();
+}
+$("showFinder").onclick=()=>{
+ $("libraryHome").classList.add("hidden");
+ $("finderPage").classList.remove("hidden");
+ $("finderDetail").classList.add("hidden");
+};
+$("backHome").onclick=showLibraryHome;
 
 function openLibrary(){
  return new Promise((resolve,reject)=>{
   const req=indexedDB.open("JamFlowMusicLibrary",1);
   req.onupgradeneeded=()=>{
-   const d=req.result;
-   if(!d.objectStoreNames.contains("tracks"))
-    d.createObjectStore("tracks",{keyPath:"id",autoIncrement:true});
+   if(!req.result.objectStoreNames.contains("tracks"))
+    req.result.createObjectStore("tracks",{keyPath:"id",autoIncrement:true});
   };
-  req.onsuccess=()=>{db=req.result;resolve(db)};
-  req.onerror=()=>reject(req.error||Error("Could not open local storage"));
+  req.onsuccess=()=>{db=req.result;resolve()};
+  req.onerror=()=>reject(req.error);
  });
 }
-function storeRequest(mode,action){
+function request(mode,action){
  return new Promise((resolve,reject)=>{
-  const tx=db.transaction("tracks",mode),store=tx.objectStore("tracks");
+  const tx=db.transaction("tracks",mode);
   let req;
-  try{req=action(store)}catch(e){reject(e);return}
+  try{req=action(tx.objectStore("tracks"))}
+  catch(e){reject(e);return}
   if(req){
    req.onsuccess=()=>resolve(req.result);
    req.onerror=()=>reject(req.error);
@@ -288,461 +323,437 @@ function storeRequest(mode,action){
   }
  });
 }
-function cleanTitle(name){
+function titleOf(name){
  return name.replace(/\.[^.]+$/,"")
-  .replace(/^\s*\d{1,3}[\s._-]+/,"")
-  .replace(/[_]+/g," ").replace(/\s+/g," ").trim();
+ .replace(/^\s*\d{1,3}[\s._-]+/,"")
+ .replace(/_/g," ").replace(/\s+/g," ").trim();
 }
-function getBand(name){
- const n=name.toLowerCase();
- if(/phish/.test(n))return "phish";
- if(/grateful.?dead|gd77|dead\b/.test(n))return "dead";
+function bandOf(name){
+ if(/phish/i.test(name))return "phish";
+ if(/grateful.?dead|gd77|dead/i.test(name))return "dead";
  return "unknown";
 }
-function getMood(name){
- const n=name.toLowerCase();
- if(/dark star|space|ambient|drone|feedback|jam|experimental/.test(n))return "spacey";
- if(/blues|soul|sugaree|deal|mr charlie/.test(n))return "bluesy";
- if(/fire|playin|playing|tweezer|carini|disease|cavern|energy/.test(n))return "energetic";
- if(/eyes|bird song|divided sky|reba|terrapin|rider|beautiful/.test(n))return "melodic";
- if(/other one|cryptical|mind|ghost|melt|dark/.test(n))return "dark";
+function moodOf(name){
+ if(/dark star|space|feedback|ambient|jam/i.test(name))return "spacey";
+ if(/blues|soul|sugaree|deal/i.test(name))return "bluesy";
+ if(/fire|playin|playing|tweezer|carini|disease/i.test(name))return "energetic";
+ if(/eyes|bird song|divided sky|reba|terrapin|rider/i.test(name))return "melodic";
+ if(/other one|cryptical|melt|dark/i.test(name))return "dark";
  return "journey";
 }
-function dateFromFilename(name){
- const m=name.match(/(19|20)\d{2}[-_.](0[1-9]|1[0-2])[-_.](0[1-9]|[12]\d|3[01])/);
- if(m)return m[0].replace(/[_.]/g,"-");
- const m2=name.match(/(19|20)\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])/);
- if(m2)return m2[0].slice(0,4)+"-"+m2[0].slice(4,6)+"-"+m2[0].slice(6,8);
- return "";
+function concertOf(r){
+ return {
+  key:r.concertKey||("legacy-"+(r.concertArtist||"Unknown")+"-"+(r.concertDate||"")+"-"+(r.concertName||r.name)),
+  name:r.concertName||"Imported recordings",
+  artist:r.concertArtist||"Imported music",
+  date:r.concertDate||"",
+  venue:r.concertVenue||""
+ };
 }
-function inferLegacyConcert(record){
- const date=record.concertDate||dateFromFilename(record.name)||"";
- const artist=record.concertArtist||(
-  getBand(record.name)==="dead"?"Grateful Dead":
-  getBand(record.name)==="phish"?"Phish":"Imported music");
- const venue=record.concertVenue||"";
- const name=record.concertName||(
-  date?"Concert "+date:"Imported recordings"
- );
- const key=record.concertKey||("legacy-"+artist+"-"+date+"-"+name);
- return {key,name,artist,date,venue};
-}
-function concertFor(record){
- return inferLegacyConcert(record);
-}
-function groupConcerts(){
+function concerts(){
  const map=new Map();
- files.forEach((record,index)=>{
-  const c=concertFor(record);
+ files.forEach((r,i)=>{
+  const c=concertOf(r);
   if(!map.has(c.key))map.set(c.key,{...c,tracks:[]});
-  map.get(c.key).tracks.push({record,index});
+  map.get(c.key).tracks.push({record:r,index:i});
  });
- return Array.from(map.values()).sort((a,b)=>{
-  return (b.date||"").localeCompare(a.date||"")||a.name.localeCompare(b.name);
- });
-}
-function trackLabel(record){
- return record.trackTitle||cleanTitle(record.name);
+ return [...map.values()].sort((a,b)=>(b.date||"").localeCompare(a.date||""));
 }
 function refreshUrls(){
- urls.forEach(u=>URL.revokeObjectURL(u));
+ urls.forEach(URL.revokeObjectURL);
  urls=files.map(r=>URL.createObjectURL(r.blob));
 }
-async function refreshLibrary(){
- files=await storeRequest("readonly",s=>s.getAll());
+async function refresh(){
+ files=await request("readonly",s=>s.getAll());
  refreshUrls();
- if(current>=files.length)current=-1;
+ renderRecent();
  renderConcerts();
- renderRecentConcerts();
  $("builderStatus").textContent=files.length
-  ?files.length+" recordings ready. Build a concert using your music."
-  :"Import recordings in Music Library before building.";
+  ?files.length+" recordings ready."
+  :"Import or find a concert to get started.";
 }
-function renderConcerts(){
- const host=$("concertList"),search=$("searchConcerts").value.trim().toLowerCase();
+function renderRecent(){
+ const host=$("recentConcerts");
  host.innerHTML="";
- const concerts=groupConcerts().filter(c=>
-  [c.artist,c.name,c.venue,c.date].join(" ").toLowerCase().includes(search)
- );
- if(!concerts.length){
-  const p=document.createElement("p");
-  p.className="intro";
-  p.textContent=files.length?"No concerts match your search.":"Your library is empty. Import your first concert above.";
-  host.append(p);return;
- }
- concerts.forEach(c=>{
-  const card=document.createElement("article");
-  card.className="concert-card";
-  const title=document.createElement("h3");
-  title.textContent=c.name;
-  const meta=document.createElement("p");
-  meta.className="concert-meta";
-  meta.textContent=[c.artist,c.date,c.venue,c.tracks.length+" tracks"].filter(Boolean).join(" · ");
-  const actions=document.createElement("div");
-  actions.className="concert-actions";
-  const view=document.createElement("button");
-  view.textContent="View Tracks →";
-  view.onclick=()=>showConcertDetail(c.key);
-  const play=document.createElement("button");
-  play.textContent="Play Show ▶";
-  play.onclick=()=>playConcertByKey(c.key);
-  actions.append(view,play);
-  card.append(title,meta,actions);
-  host.append(card);
+ concerts().slice(0,3).forEach(c=>{
+  const el=document.createElement("article");
+  el.className="card";
+  const h=document.createElement("h3");h.textContent=c.name;
+  const p=document.createElement("p");p.className="meta";
+  p.textContent=[c.artist,c.date,c.venue,c.tracks.length+" tracks"].filter(Boolean).join(" · ");
+  const b=document.createElement("button");b.textContent="View Tracks →";
+  b.onclick=()=>openConcert(c.key);
+  el.append(h,p,b);host.append(el);
  });
+ if(!host.children.length)host.innerHTML='<p class="intro">Your saved concerts will appear here.</p>';
 }
-$("searchConcerts").addEventListener("input",renderConcerts);
-
 function showAllConcerts(){
  $("libraryHome").classList.add("hidden");
- $("concertDetail").classList.add("hidden");
+ $("finderPage").classList.add("hidden");
+ $("finderDetail").classList.add("hidden");
  $("concertBrowse").classList.remove("hidden");
+ $("concertDetail").classList.add("hidden");
  renderConcerts();
- window.scrollTo({top:0,behavior:"smooth"});
 }
-$("viewAllConcerts").onclick=showAllConcerts;
-$("backLibraryHome").onclick=()=>showPage("library");
+$("viewAll").onclick=showAllConcerts;
+$("backLibrary").onclick=showLibraryHome;
+$("searchConcerts").oninput=renderConcerts;
 
-function renderRecentConcerts(){
- const host=$("recentConcerts");
- if(!host)return;
+function renderConcerts(){
+ const host=$("concertList");
  host.innerHTML="";
- const recent=groupConcerts().slice(0,3);
- if(!recent.length){
-  const empty=document.createElement("p");
-  empty.className="intro";
-  empty.textContent="Your imported concerts will appear here.";
-  host.append(empty);
-  return;
- }
- const heading=document.createElement("h3");
- heading.textContent="Recently Added";
- host.append(heading);
- recent.forEach(c=>{
-  const card=document.createElement("article");
-  card.className="concert-card";
-  const title=document.createElement("h3");
-  title.textContent=c.name;
-  const meta=document.createElement("p");
-  meta.className="concert-meta";
-  meta.textContent=[c.artist,c.date,c.venue,c.tracks.length+" tracks"].filter(Boolean).join(" · ");
-  const view=document.createElement("button");
-  view.textContent="View Tracks →";
-  view.onclick=()=>showConcertDetail(c.key);
-  card.append(title,meta,view);
-  host.append(card);
+ const q=$("searchConcerts").value.toLowerCase();
+ const list=concerts().filter(c=>
+  [c.name,c.artist,c.date,c.venue].join(" ").toLowerCase().includes(q));
+ list.forEach(c=>{
+  const el=document.createElement("article");el.className="card";
+  const h=document.createElement("h3");h.textContent=c.name;
+  const p=document.createElement("p");p.className="meta";
+  p.textContent=[c.artist,c.date,c.venue,c.tracks.length+" tracks"].filter(Boolean).join(" · ");
+  const actions=document.createElement("div");actions.className="card-actions";
+  const view=document.createElement("button");view.textContent="View Tracks";
+  view.onclick=()=>openConcert(c.key);
+  const play=document.createElement("button");play.textContent="Play Show ▶";
+  play.onclick=()=>playConcert(c.key);
+  actions.append(view,play);el.append(h,p,actions);host.append(el);
  });
+ if(!list.length)host.innerHTML='<p class="intro">No matching saved concerts.</p>';
 }
-function showConcertDetail(key){
- $("libraryHome").classList.add("hidden");
- $("concertBrowse").classList.add("hidden");
- openConcert(key);
-}
-
 function openConcert(key){
- const concert=groupConcerts().find(c=>c.key===key);
- if(!concert)return;
+ const c=concerts().find(x=>x.key===key);
+ if(!c)return;
  activeConcertKey=key;
  $("libraryHome").classList.add("hidden");
+ $("finderPage").classList.add("hidden");
+ $("finderDetail").classList.add("hidden");
  $("concertBrowse").classList.add("hidden");
  $("concertDetail").classList.remove("hidden");
- $("detailTitle").textContent=concert.name;
- $("detailMeta").textContent=[concert.artist,concert.date,concert.venue,concert.tracks.length+" tracks"].filter(Boolean).join(" · ");
- const host=$("detailTracks");
- host.innerHTML="";
- concert.tracks.forEach((item,n)=>{
-  const row=document.createElement("div");
-  row.className="track-row";
-  const name=document.createElement("div");
-  name.className="track-name";
-  name.textContent=(n+1)+". "+trackLabel(item.record);
-  const play=document.createElement("button");
-  play.textContent="Play";
-  play.onclick=()=>playLibraryTrack(item.index);
-  const remove=document.createElement("button");
-  remove.className="remove-track";
-  remove.textContent="×";
-  remove.title="Remove track";
+ $("detailTitle").textContent=c.name;
+ $("detailMeta").textContent=[c.artist,c.date,c.venue,c.tracks.length+" tracks"].filter(Boolean).join(" · ");
+ const host=$("detailTracks");host.innerHTML="";
+ c.tracks.forEach((t,n)=>{
+  const row=document.createElement("div");row.className="track-row";
+  const name=document.createElement("span");name.textContent=(n+1)+". "+(t.record.trackTitle||titleOf(t.record.name));
+  const play=document.createElement("button");play.textContent="Play";
+  play.onclick=()=>playTrack(t.index);
+  const remove=document.createElement("button");remove.textContent="×";
   remove.onclick=async()=>{
-   if(!confirm("Remove this track from the concert?"))return;
-   await storeRequest("readwrite",s=>s.delete(item.record.id));
-   await refreshLibrary();
-   openConcert(key);
+   if(confirm("Remove this track?")){
+    await request("readwrite",s=>s.delete(t.record.id));
+    await refresh();openConcert(key);
+   }
   };
-  row.append(name,play,remove);
-  host.append(row);
+  row.append(name,play,remove);host.append(row);
  });
- window.scrollTo({top:0,behavior:"smooth"});
 }
-function closeConcert(){
- activeConcertKey=null;
- $("concertDetail").classList.add("hidden");
- $("concertBrowse").classList.remove("hidden");
- renderConcerts();
-}
-$("backConcerts").onclick=closeConcert;
-$("playEntireShow").onclick=()=>playConcertByKey(activeConcertKey);
+$("backConcerts").onclick=showAllConcerts;
+$("playEntireShow").onclick=()=>playConcert(activeConcertKey);
 
-async function deleteConcertByKey(key){
- const concert=groupConcerts().find(c=>c.key===key);
- if(!concert)return;
- if(!confirm("Delete "+concert.name+" and all "+concert.tracks.length+" saved tracks? This cannot be undone."))return;
- if(concert.tracks.some(t=>t.index===current)){
+async function deleteConcert(key){
+ const c=concerts().find(x=>x.key===key);
+ if(!c||!confirm("Delete "+c.name+" and all its tracks?"))return;
+ if(c.tracks.some(t=>t.index===current)){
   player.pause();player.removeAttribute("src");player.load();current=-1;
  }
- const ids=concert.tracks.map(t=>t.record.id);
- await storeRequest("readwrite",store=>{
-  ids.forEach(id=>store.delete(id));
- });
- closeConcert();
- await refreshLibrary();
- $("audioStatus").textContent="Concert deleted.";
+ await request("readwrite",s=>c.tracks.forEach(t=>s.delete(t.record.id)));
+ showAllConcerts();await refresh();
 }
-$("deleteConcert").onclick=()=>deleteConcertByKey(activeConcertKey);
+$("deleteConcert").onclick=()=>deleteConcert(activeConcertKey);
 
-function playLibraryTrack(i){
+function playTrack(i){
  if(!files.length)return;
- current=(i+files.length)%files.length;
- playingConcert=false;
- player.src=urls[current];
- $("nowPlaying").textContent=files[current].name;
- player.play().catch(()=>{$("nowPlaying").textContent="Ready: "+files[current].name+". Press Play."});
+ current=i;playingConcert=false;
+ player.src=urls[i];
+ $("nowPlaying").textContent=files[i].name;
+ player.play().catch(()=>{});
 }
-function playConcertByKey(key){
- const c=groupConcerts().find(x=>x.key===key);
- if(!c||!c.tracks.length)return;
- setlistFileIndexes=c.tracks.map(t=>t.index);
- setlistPosition=0;
- playingConcert=true;
+function playConcert(key){
+ const c=concerts().find(x=>x.key===key);
+ if(!c)return;
+ setlist=c.tracks.map(t=>t.index);
+ setPosition=0;playingConcert=true;
  showPage("library");
  openConcert(key);
- playConcertTrack(0);
+ playSetPosition(0);
 }
-function playConcertTrack(position){
- if(!setlistFileIndexes.length)return;
- setlistPosition=Math.max(0,Math.min(position,setlistFileIndexes.length-1));
- current=setlistFileIndexes[setlistPosition];
- playingConcert=true;
+function playSetPosition(n){
+ if(!setlist.length)return;
+ setPosition=Math.max(0,Math.min(n,setlist.length-1));
+ current=setlist[setPosition];
  player.src=urls[current];
- $("nowPlaying").textContent="Track "+(setlistPosition+1)+" of "+setlistFileIndexes.length+" — "+files[current].name;
- $("playbackStatus").textContent="Playing concert track "+(setlistPosition+1)+" of "+setlistFileIndexes.length+".";
- player.play().catch(()=>{$("playbackStatus").textContent="Recording ready. Press Play on the audio player."});
+ $("nowPlaying").textContent="Track "+(setPosition+1)+" of "+setlist.length+" — "+files[current].name;
+ player.play().catch(()=>{});
 }
-function nextConcertTrack(){
- if(setlistPosition<setlistFileIndexes.length-1)playConcertTrack(setlistPosition+1);
- else{
-  playingConcert=false;
-  $("playbackStatus").textContent="Your concert has finished.";
-  $("nowPlaying").textContent="Concert complete.";
- }
+function next(){
+ if(playingConcert){
+  if(setPosition<setlist.length-1)playSetPosition(setPosition+1);
+  else{$("nowPlaying").textContent="Concert complete.";playingConcert=false;}
+ }else if(current<files.length-1)playTrack(current+1);
 }
-function previousConcertTrack(){
- if(setlistFileIndexes.length)playConcertTrack(Math.max(0,setlistPosition-1));
+function previous(){
+ if(playingConcert)playSetPosition(Math.max(0,setPosition-1));
+ else if(current>0)playTrack(current-1);
 }
-function nextLibraryTrack(){
- if(files.length)playLibraryTrack((current+1)%files.length);
-}
-function previousLibraryTrack(){
- if(files.length)playLibraryTrack((current-1+files.length)%files.length);
-}
+$("nextTrack").onclick=next;
+$("previousTrack").onclick=previous;
+player.onended=next;
 
-audioInput.addEventListener("change",async()=>{
- const incoming=Array.from(audioInput.files||[]);
- audioInput.value="";
+$("audioFiles").onchange=async()=>{
+ const incoming=[...$("audioFiles").files];
+ $("audioFiles").value="";
  if(!incoming.length)return;
  const name=$("concertName").value.trim();
- if(!name){
-  $("audioStatus").textContent="Enter a concert name before importing tracks.";
-  return;
- }
+ if(!name){$("audioStatus").textContent="Enter a concert name first.";return;}
  const artist=$("concertArtist").value;
  const date=$("concertDate").value;
  const venue=$("concertVenue").value.trim();
  const key=[artist,date,name.toLowerCase()].join("|");
- $("audioStatus").textContent="Saving "+incoming.length+" tracks…";
  try{
   for(const f of incoming){
-   await storeRequest("readwrite",store=>store.add({
-    name:f.name,type:f.type||"audio/mpeg",size:f.size,blob:f,addedAt:Date.now(),
-    concertKey:key,concertName:name,concertArtist:artist,concertDate:date,concertVenue:venue,
-    trackTitle:cleanTitle(f.name)
+   await request("readwrite",s=>s.add({
+    name:f.name,type:f.type||"audio/mpeg",size:f.size,blob:f,
+    addedAt:Date.now(),concertKey:key,concertName:name,
+    concertArtist:artist,concertDate:date,concertVenue:venue,
+    trackTitle:titleOf(f.name)
    }));
   }
-  if(navigator.storage&&navigator.storage.persist){
-   try{await navigator.storage.persist()}catch(e){}
-  }
-  await refreshLibrary();
-  $("audioStatus").textContent=incoming.length+" track(s) saved to "+name+".";
-  $("concertName").value="";
-  $("concertVenue").value="";
+  if(navigator.storage?.persist)await navigator.storage.persist();
+  await refresh();
+  $("audioStatus").textContent=incoming.length+" tracks saved to "+name+".";
+  $("concertName").value="";$("concertVenue").value="";
  }catch(e){
-  $("audioStatus").textContent="Could not save tracks. Check device storage and try again. "+e.message;
+  $("audioStatus").textContent="Import error: "+e.message;
  }
-});
-$("clearLibrary").onclick=async()=>{
- if(!confirm("Delete every saved recording and concert? This cannot be undone."))return;
- player.pause();
- player.removeAttribute("src");
- player.load();
- current=-1;
- setlistFileIndexes=[];
- await storeRequest("readwrite",s=>s.clear());
- await refreshLibrary();
- $("audioStatus").textContent="Library cleared.";
 };
-openLibrary().then(refreshLibrary).catch(e=>{
- $("audioStatus").textContent="Saved music storage unavailable. Open JamFlow in Safari, not Private Browsing. "+e.message;
- $("builderStatus").textContent="Could not open your saved music library.";
-});
 
-$("nextTrack").onclick=()=>playingConcert?nextConcertTrack():nextLibraryTrack();
-$("previousTrack").onclick=()=>playingConcert?previousConcertTrack():previousLibraryTrack();
-player.addEventListener("ended",()=>{
- if(playingConcert)nextConcertTrack();
- else if(current<files.length-1)playLibraryTrack(current+1);
- else $("nowPlaying").textContent="Playback finished.";
+// INTERNET ARCHIVE CONCERT FINDER
+
+for(let y=1965;y<=1995;y++){
+ const opt=document.createElement("option");
+ opt.value=y;opt.textContent=y;$("finderYear").append(opt);
+}
+
+let lastSearchResults=[];
+
+async function archiveSearch(){
+ const term=$("finderSearch").value.trim();
+ const year=$("finderYear").value;
+ let query="collection:GratefulDead";
+ if(year)query+=" AND year:"+year;
+ if(term){
+  const safe=term.replace(/[+\-&|!(){}[\]^"~*?:\\/]/g," ").trim();
+  if(safe)query+=" AND ("+safe.split(/\s+/).map(w=>w+"*").join(" AND ")+")";
+ }
+ const params=new URLSearchParams();
+ params.set("q",query);
+ ["identifier","title","date","year","venue","downloads","creator"].forEach(f=>params.append("fl[]",f));
+ params.set("rows","40");
+ params.set("page","1");
+ params.set("output","json");
+ params.append("sort[]","date desc");
+ $("finderStatus").textContent="Searching the Internet Archive…";
+ $("finderResults").innerHTML="";
+ $("searchArchive").disabled=true;
+ try{
+  const response=await fetch("https://archive.org/advancedsearch.php?"+params);
+  if(!response.ok)throw Error("Search service returned "+response.status);
+  const data=await response.json();
+  lastSearchResults=data.response?.docs||[];
+  $("finderStatus").textContent=(data.response?.numFound||0).toLocaleString()+" matching archive items. Showing up to 40.";
+  renderFinderResults(lastSearchResults);
+ }catch(e){
+  $("finderStatus").textContent="Search failed. Please try again. "+e.message;
+ }finally{$("searchArchive").disabled=false;}
+}
+$("searchArchive").onclick=archiveSearch;
+$("finderSearch").onkeydown=e=>{if(e.key==="Enter")archiveSearch();};
+
+function renderFinderResults(items){
+ const host=$("finderResults");host.innerHTML="";
+ if(!items.length){
+  host.innerHTML='<p class="intro">No concerts found. Try another year or search term.</p>';
+  return;
+ }
+ items.forEach(item=>{
+  const el=document.createElement("article");el.className="card";
+  const h=document.createElement("h3");h.textContent=item.title||item.identifier;
+  const p=document.createElement("p");p.className="meta";
+  p.textContent=[item.date,item.venue,item.year,
+   item.downloads?Number(item.downloads).toLocaleString()+" downloads":""].filter(Boolean).join(" · ");
+  const actions=document.createElement("div");actions.className="card-actions";
+  const details=document.createElement("button");details.textContent="Inspect Concert →";
+  details.onclick=()=>loadArchiveItem(item);
+  const external=document.createElement("button");external.textContent="Archive Page ↗";
+  external.onclick=()=>window.open("https://archive.org/details/"+encodeURIComponent(item.identifier),"_blank");
+  actions.append(details,external);el.append(h,p,actions);host.append(el);
+ });
+}
+
+function isAudio(f){
+ const n=(f.name||"").toLowerCase();
+ return /\.(mp3|m4a|flac|ogg|wav|aiff|shn|ape)$/i.test(n);
+}
+function isRestricted(f){
+ return f.private===true||f.private==="true"||f.source==="original_private";
+}
+function humanSize(bytes){
+ const n=Number(bytes);
+ if(!n)return "";
+ const units=["B","KB","MB","GB"];
+ let v=n,i=0;
+ while(v>=1024&&i<3){v/=1024;i++;}
+ return v.toFixed(i?1:0)+" "+units[i];
+}
+async function loadArchiveItem(item){
+ $("finderStatus").textContent="Loading concert information…";
+ try{
+  const response=await fetch("https://archive.org/metadata/"+encodeURIComponent(item.identifier));
+  if(!response.ok)throw Error("Could not retrieve concert metadata.");
+  const data=await response.json();
+  if(!data.metadata)throw Error("Concert metadata unavailable.");
+  selectedArchive={...item,metadata:data.metadata};
+  selectedArchiveFiles=(data.files||[]).filter(f=>isAudio(f)&&!isRestricted(f))
+   .filter(f=>!f.name.startsWith("__"));
+  showFinderDetail();
+ }catch(e){
+  $("finderStatus").textContent=e.message;
+ }
+}
+function showFinderDetail(){
+ $("finderPage").classList.add("hidden");
+ $("finderDetail").classList.remove("hidden");
+ const m=selectedArchive.metadata;
+ $("finderTitle").textContent=m.title||selectedArchive.title;
+ $("finderMeta").textContent=[
+  m.date||selectedArchive.date,
+  m.venue||selectedArchive.venue,
+  m.coverage,
+  selectedArchive.identifier
+ ].filter(Boolean).join(" · ");
+ $("finderDescription").textContent=
+  typeof m.description==="string"?m.description.slice(0,900):"";
+ const host=$("finderTracks");host.innerHTML="";
+ const canDownload=selectedArchiveFiles.length>0;
+ $("finderAccess").textContent=canDownload
+  ?selectedArchiveFiles.length+" publicly listed audio files available for download."
+  :"No publicly downloadable audio files found. This may be a stream-only recording.";
+ selectedArchiveFiles.forEach((f,i)=>{
+  const row=document.createElement("div");row.className="track-row";
+  const name=document.createElement("span");
+  name.textContent=(i+1)+". "+f.name+" · "+humanSize(f.size);
+  const link=document.createElement("button");
+  link.textContent="Download ↓";
+  link.onclick=()=>downloadArchiveFile(f);
+  row.append(name,link);host.append(row);
+ });
+ $("downloadAll").disabled=!canDownload;
+ $("downloadAll").textContent=canDownload
+  ?"Download All Available Tracks ("+selectedArchiveFiles.length+")"
+  :"No downloads available";
+}
+function downloadArchiveFile(f){
+ if(!selectedArchive)return;
+ const url="https://archive.org/download/"+
+  encodeURIComponent(selectedArchive.identifier)+"/"+
+  f.name.split("/").map(encodeURIComponent).join("/");
+ const a=document.createElement("a");
+ a.href=url;a.target="_blank";a.rel="noopener";
+ a.click();
+}
+$("downloadAll").onclick=()=>{
+ // Open each eligible file as a separate browser download.
+ // Safari may limit simultaneous downloads; use individual links if needed.
+ selectedArchiveFiles.forEach((f,i)=>{
+  setTimeout(()=>downloadArchiveFile(f),i*1200);
+ });
+};
+$("backFinder").onclick=()=>{
+ $("finderDetail").classList.add("hidden");
+ $("finderPage").classList.remove("hidden");
+};
+
+// Pre-fill the import form using the selected archive concert.
+$("finderDetail").addEventListener("dblclick",()=>{
+ if(!selectedArchive)return;
+ $("concertName").value=selectedArchive.metadata.title||selectedArchive.title||"";
+ $("concertArtist").value="Grateful Dead";
+ $("concertDate").value=(selectedArchive.metadata.date||selectedArchive.date||"").slice(0,10);
+ $("concertVenue").value=selectedArchive.metadata.venue||selectedArchive.venue||"";
 });
 
 function sync(){
  $("durationValue").textContent=$("duration").value+" min";
- $("intensityValue").textContent=$("intensity").value+"/10";
+ $("intensityValue").textContent=$("intensity").value;
 }
 $("duration").oninput=sync;
 $("intensity").oninput=sync;
 sync();
 
-function settings(){
- return{
-  artist:$("artist").value,
-  duration:+$("duration").value,
-  jam:+$("jam").value,
-  mood:$("mood").value,
-  intensity:+$("intensity").value,
-  discovery:$("discovery").value,
-  repeat:$("repeat").value
- };
-}
 function build(){
  if(!files.length){
-  $("builderStatus").textContent="Your library is empty. Import a concert first.";
-  showPage("library");
-  return;
+  $("builderStatus").textContent="Import music or find a concert first.";
+  showPage("library");return;
  }
- const s=settings();
- let pool=files.map((r,i)=>{
-  const concert=concertFor(r);
-  return {
-   index:i,name:r.name,title:trackLabel(r),
-   band:getBand(r.name),mood:getMood(r.name),
-   concertKey:concert.key,concertName:concert.name,
-   concertArtist:concert.artist,concertDate:concert.date
-  };
- });
+ const s={
+  artist:$("artist").value,duration:+$("duration").value,
+  jam:+$("jam").value,mood:$("mood").value,
+  intensity:+$("intensity").value,repeat:$("repeat").value
+ };
+ let pool=files.map((r,i)=>({
+  index:i,name:r.name,title:r.trackTitle||titleOf(r.name),
+  band:bandOf(r.name),mood:moodOf(r.name),concert:concertOf(r)
+ }));
  if(s.artist!=="both"){
-  const identified=pool.filter(t=>t.band===s.artist);
-  const unknown=pool.filter(t=>t.band==="unknown");
-  pool=identified.concat(unknown);
-  if(!pool.length){
-   $("builderStatus").textContent="No recordings identified for that artist. Check filenames or select All recordings.";
-   return;
-  }
+  const matched=pool.filter(t=>t.band===s.artist||t.band==="unknown");
+  if(matched.length)pool=matched;
  }
  const target=Math.max(4,Math.min(12,Math.round(s.duration/(s.jam===1?9:s.jam===2?12:16))));
- const count=Math.min(target,pool.length);
  const selected=[];
  const stages=["Opening","Build","Peak","Cooldown"];
- const concertUse=new Map();
-
- function score(t,stage){
-  let p=Math.random()*2;
-  if(s.mood!=="journey"&&t.mood===s.mood)p+=5;
-  if(s.discovery==="familiar"&&/bertha|sugar magnolia|tweezer|eyes of the world|ghost|reba/i.test(t.name))p+=3;
-  if(s.discovery==="adventurous"&&/dark star|bird song|reba|carini|sand|space|other one/i.test(t.name))p+=5;
-  if(stage==="Opening"&&(/intro|opening|bertha|sugar magnolia/i.test(t.name)||["journey","melodic"].includes(t.mood)))p+=3;
-  if(stage==="Build"&&["energetic","bluesy"].includes(t.mood))p+=3;
-  if(stage==="Peak"&&["spacey","dark","energetic"].includes(t.mood))p+=s.intensity/2+3;
-  if(stage==="Cooldown"&&["melodic","bluesy","journey"].includes(t.mood))p+=7;
-  if(stage==="Cooldown"&&t.mood==="energetic"&&s.intensity<6)p-=3;
-  if(s.jam===3&&/dark star|tweezer|playin|playing|reba|you enjoy myself|ghost/i.test(t.name))p+=2;
-  if(s.jam===1&&/short|compact|deal|cavern/i.test(t.name))p+=1;
-  return p;
- }
-
- // Spread selections across concerts and avoid consecutive tracks from one show.
- for(let i=0;i<count;i++){
-  const stage=stages[Math.min(3,Math.floor(i/count*4))];
-  const lastKey=selected.length?selected[selected.length-1].concertKey:null;
-  let candidates=pool.filter(t=>!selected.some(x=>x.index===t.index));
-  if(lastKey){
-   const alternatives=candidates.filter(t=>t.concertKey!==lastKey);
-   if(alternatives.length)candidates=alternatives;
+ for(let i=0;i<Math.min(target,pool.length);i++){
+  const stage=stages[Math.min(3,Math.floor(i/target*4))];
+  let choices=pool.filter(t=>!selected.some(x=>x.index===t.index));
+  if(s.repeat==="session"&&selected.length){
+   const other=choices.filter(t=>t.concert.key!==selected[selected.length-1].concert.key);
+   if(other.length)choices=other;
   }
-  if(!candidates.length)break;
-  const ranked=candidates.map(t=>({...t,rank:score(t,stage)}));
-  ranked.sort((a,b)=>{
-   const useA=concertUse.get(a.concertKey)||0;
-   const useB=concertUse.get(b.concertKey)||0;
-   return (b.rank-useB*4)-(a.rank-useA*4);
+  choices.sort((a,b)=>{
+   function score(t){
+    let p=Math.random()*2;
+    if(s.mood!=="journey"&&t.mood===s.mood)p+=5;
+    if(stage==="Peak"&&["spacey","dark","energetic"].includes(t.mood))p+=s.intensity/2+3;
+    if(stage==="Cooldown"&&["melodic","bluesy","journey"].includes(t.mood))p+=7;
+    if(stage==="Opening"&&["journey","melodic"].includes(t.mood))p+=3;
+    return p;
+   }
+   return score(b)-score(a);
   });
-  const chosen=ranked[0];
-  selected.push({...chosen,stage});
-  concertUse.set(chosen.concertKey,(concertUse.get(chosen.concertKey)||0)+1);
+  selected.push({...choices[0],stage});
  }
-
- setlistFileIndexes=selected.map(t=>t.index);
- setlistPosition=0;
- playingConcert=true;
- $("sessionTitle").textContent="Your JamFlow Concert";
+ setlist=selected.map(t=>t.index);
+ setPosition=0;playingConcert=true;
  $("sessionDescription").textContent=selected.length+" recordings · "+s.duration+" minute target · "+s.intensity+"/10 intensity";
- const showCount=new Set(selected.map(t=>t.concertKey)).size;
- $("sessionSummary").textContent="Direction: "+s.mood+". Mixed from "+showCount+" concert"+(showCount===1?"":"s")+". Built from your own saved recordings.";
-
- const host=$("tracks");
- host.innerHTML="";
+ $("sessionSummary").textContent="A "+s.mood+" journey using "+new Set(selected.map(t=>t.concert.key)).size+" saved concerts.";
+ const host=$("tracks");host.innerHTML="";
  selected.forEach((t,i)=>{
-  const a=document.createElement("article");
-  a.className="track";
-  const top=document.createElement("div");
-  top.className="track-top";
-  const n=document.createElement("div");
-  n.className="number";
-  n.textContent=i+1;
-  const b=document.createElement("div");
-  b.style.minWidth="0";
-  const stage=document.createElement("div");
-  stage.className="eyebrow";
-  stage.textContent=t.stage;
-  const title=document.createElement("h3");
-  title.textContent=t.title;
-  const badge=document.createElement("div");
-  badge.className="badge";
-  badge.textContent=(t.band==="dead"?"Grateful Dead":t.band==="phish"?"Phish":"Library")+" · "+t.mood+" · "+t.concertName;
-  const note=document.createElement("p");
-  note.className="reason";
-  note.textContent="Selected from your saved music library.";
-  b.append(stage,title,badge,note);
-  top.append(n,b);
-  a.append(top);
-  host.append(a);
+  const el=document.createElement("div");el.className="track";
+  const h=document.createElement("h3");h.textContent=(i+1)+". "+t.title;
+  const p=document.createElement("p");p.className="meta";
+  p.textContent=t.stage+" · "+t.concert.name+" · "+t.concert.date;
+  el.append(h,p);host.append(el);
  });
- $("sessionNote").textContent="Songs are selected from your actual imported recordings. Musical mood and artist identification are estimated from filenames. Audio analysis and seamless transitions are future features.";
- $("playbackStatus").textContent=selected.length+" tracks ready to play in concert order.";
- $("nowPlaying").textContent="Your concert is ready. Press Play Concert.";
  $("results").classList.remove("hidden");
- $("builderStatus").textContent="Concert built from your imported recordings.";
- $("results").scrollIntoView({behavior:"smooth",block:"start"});
+ $("builderStatus").textContent="Your concert is ready.";
+ $("results").scrollIntoView({behavior:"smooth"});
 }
 $("build").onclick=build;
 $("more").onclick=build;
-$("playJam").onclick=()=>{
- if(setlistFileIndexes.length)playConcertTrack(0);
- else $("playbackStatus").textContent="Build a concert first.";
-};
-$("change").onclick=()=>{
- const moods=["spacey","bluesy","energetic","melodic","dark","journey"];
- $("mood").value=moods.find(m=>m!==$("mood").value);
- build();
-};
+$("playJam").onclick=()=>{if(setlist.length)playSetPosition(0);};
+
+openLibrary().then(refresh).catch(e=>{
+ $("audioStatus").textContent="Music storage unavailable. Open JamFlow in Safari.";
+ $("builderStatus").textContent="Could not load saved music.";
+});
 </script>
 </body>
 </html>
